@@ -283,21 +283,89 @@ button { background: none; border: none; cursor: pointer; font: inherit; color: 
 }
 .btn-ghost:hover { border-color: var(--warm-white); color: var(--warm-white); }
 
-/* COVER */
-.hero-right { display: flex; justify-content: center; }
+/* COVER — 3D paperback */
+.hero-right { display: flex; justify-content: center; perspective: 1200px; }
 .hero-cover {
   position: relative;
+  transform-style: preserve-3d;
+  transform: rotateY(-8deg);
+  transition: transform 0.5s var(--ease);
 }
+.hero-cover:hover { transform: rotateY(-4deg); }
 .hero-cover img {
   max-height: 72vh;
   width: auto;
-  border-radius: 2px;
-  box-shadow:
-    0 25px 50px rgba(0,0,0,0.4),
-    0 0 0 1px rgba(255,255,255,0.05);
-  transition: transform 0.5s var(--ease);
+  display: block;
+  border-radius: 2px 6px 6px 2px;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.45);
 }
-.hero-cover:hover img { transform: translateY(-4px) scale(1.01); }
+/* Page edges — right side */
+.hero-cover::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  right: -14px;
+  bottom: 4px;
+  width: 14px;
+  z-index: 1;
+  background: linear-gradient(
+    to right,
+    #e8e4dd 0%,
+    #d9d5ce 2px,
+    #eae7e1 2px,
+    #d9d5ce 4px,
+    #eae7e1 4px,
+    #d9d5ce 6px,
+    #eae7e1 6px,
+    #d9d5ce 8px,
+    #eae7e1 8px,
+    #d9d5ce 10px,
+    #f0ece6 10px,
+    #ddd9d2 100%
+  );
+  border-radius: 0 3px 3px 0;
+  transform: rotateY(20deg);
+  transform-origin: left center;
+  box-shadow: 2px 0 4px rgba(0,0,0,0.15);
+}
+/* Page edges — bottom */
+.hero-cover::before {
+  content: '';
+  position: absolute;
+  left: 4px;
+  right: 0;
+  bottom: -14px;
+  height: 14px;
+  z-index: 1;
+  background: linear-gradient(
+    to bottom,
+    #e8e4dd 0%,
+    #d9d5ce 2px,
+    #eae7e1 2px,
+    #d9d5ce 4px,
+    #eae7e1 4px,
+    #d9d5ce 6px,
+    #eae7e1 6px,
+    #d9d5ce 8px,
+    #eae7e1 8px,
+    #d9d5ce 10px,
+    #f0ece6 10px,
+    #ddd9d2 100%
+  );
+  border-radius: 0 0 3px 3px;
+  transform: rotateX(20deg);
+  transform-origin: top center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+}
+/* Spine highlight */
+.hero-cover img {
+  border-left: 3px solid rgba(0,0,0,0.2);
+  box-shadow:
+    0 30px 60px rgba(0,0,0,0.45),
+    inset 4px 0 8px rgba(0,0,0,0.08);
+}
 
 /* SCROLL INDICATOR */
 .hero-scroll {
