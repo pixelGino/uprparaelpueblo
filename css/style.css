@@ -283,19 +283,81 @@ button { background: none; border: none; cursor: pointer; font: inherit; color: 
 }
 .btn-ghost:hover { border-color: var(--warm-white); color: var(--warm-white); }
 
-/* COVER */
-.hero-right { display: flex; justify-content: center; }
-.hero-cover { position: relative; }
+/* COVER — 3D paperback book */
+.hero-right { display: flex; justify-content: center; perspective: 1200px; position: relative; }
+.hero-cover {
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateY(-12deg);
+  transition: transform 0.5s var(--ease);
+}
+.hero-cover:hover {
+  transform: rotateY(-6deg);
+}
+
+/* Front cover (the image) */
 .hero-cover img {
   max-height: 72vh;
   width: auto;
-  border-radius: 2px;
+  display: block;
+  border-radius: 2px 6px 6px 2px;
   box-shadow:
-    0 25px 50px rgba(0,0,0,0.4),
+    6px 6px 18px rgba(0,0,0,0.35),
     0 0 0 1px rgba(255,255,255,0.05);
-  transition: transform 0.5s var(--ease);
 }
-.hero-cover:hover img { transform: translateY(-4px) scale(1.01); }
+
+/* Spine */
+.hero-cover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    hsl(0 0% 18%) 0%,
+    hsl(0 0% 28%) 30%,
+    hsl(0 0% 22%) 70%,
+    hsl(0 0% 16%) 100%
+  );
+  border-radius: 6px 0 0 6px;
+  transform: translateX(-39px) rotateY(90deg);
+  transform-origin: right center;
+}
+
+/* Page edges (bottom / right side of book) */
+.hero-cover::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  right: -12px;
+  width: 12px;
+  height: calc(100% - 6px);
+  background: repeating-linear-gradient(
+    to right,
+    #f5f0e8,
+    #f5f0e8 1px,
+    #e8e0d4 1px,
+    #e8e0d4 2px
+  );
+  border-radius: 0 2px 2px 0;
+  transform: rotateY(0deg);
+  box-shadow: 2px 0 6px rgba(0,0,0,0.15);
+}
+
+/* Drop shadow underneath the book */
+.hero-right::after {
+  content: '';
+  position: absolute;
+  bottom: -18px;
+  left: 50%;
+  transform: translateX(-50%) rotateX(80deg);
+  width: 70%;
+  height: 30px;
+  background: radial-gradient(ellipse, rgba(0,0,0,0.3) 0%, transparent 70%);
+  pointer-events: none;
+}
 
 /* SCROLL INDICATOR */
 .hero-scroll {
@@ -317,8 +379,11 @@ button { background: none; border: none; cursor: pointer; font: inherit; color: 
     text-align: center;
     padding-top: 6rem;
   }
-  .hero-right { order: -1; }
+  .hero-right { order: -1; position: relative; }
   .hero-cover img { max-height: 45vh; }
+  .hero-cover { transform: rotateY(-8deg); }
+  .hero-cover::before { width: 28px; transform: translateX(-27px) rotateY(90deg); }
+  .hero-cover::after { right: -8px; width: 8px; }
   .hero-quote { text-align: left; }
   .hero-actions { justify-content: center; }
   .hero-label { margin-bottom: 1rem; }
