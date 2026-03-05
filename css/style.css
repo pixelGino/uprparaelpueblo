@@ -581,9 +581,11 @@ button { background: none; border: none; cursor: pointer; font: inherit; color: 
   background: var(--warm-white);
 }
 .comprar-top {
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
 }
-.comprar-top .heading-xl { color: var(--red); }
+.price-accent {
+  color: var(--red);
+}
 
 .comprar-grid {
   display: grid;
