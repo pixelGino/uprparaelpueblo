@@ -1,0 +1,2 @@
+# Redirect www to non-www
+https://www.uprparaelpueblo.com/* https://uprparaelpueblo.com/:splat 301!
