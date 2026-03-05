@@ -675,17 +675,23 @@ button { background: none; border: none; cursor: pointer; font: inherit; color: 
   color: var(--gray-700);
 }
 
-.footer-produced {
-  display: flex;
+.produced-by {
+  background: var(--charcoal);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 1.25rem 0;
+  text-align: center;
+}
+.produced-by a {
+  display: inline-flex;
   align-items: center;
   gap: 0.4rem;
   font-size: 0.75rem;
   color: var(--gray-700);
   transition: color 0.2s;
 }
-.footer-produced:hover { color: var(--gray-500); }
-.footer-produced img { opacity: 0.6; transition: opacity 0.2s; }
-.footer-produced:hover img { opacity: 1; }
+.produced-by a:hover { color: var(--gray-500); }
+.produced-by img { opacity: 0.6; transition: opacity 0.2s; }
+.produced-by a:hover img { opacity: 1; }
 
 @media (max-width: 600px) {
   .footer-inner { flex-direction: column; text-align: center; }
