@@ -579,14 +579,52 @@ button { background: none; border: none; cursor: pointer; font: inherit; color: 
 .comprar-top {
   margin-bottom: 3rem;
 }
-.price-accent {
+.comprar-donation {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  background: var(--cream);
+  border-radius: 12px;
+  padding: 1.5rem 2rem;
+  margin-bottom: 3rem;
+}
+.donation-logo {
+  border-radius: 8px;
+  object-fit: contain;
+  flex-shrink: 0;
+  width: 400px;
+  height: auto;
+}
+.donation-text {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--gray-700);
+}
+.donation-text a {
   color: var(--red);
+  font-weight: 600;
+  transition: color 0.2s;
+}
+.donation-text a:hover {
+  color: var(--red-dark);
 }
 
 .comprar-grid {
   display: grid;
   grid-template-columns: 1.4fr 1fr;
   gap: clamp(2rem, 5vw, 4rem);
+}
+.comprar-right {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+.btn-editorial {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-align: center;
+  justify-content: center;
 }
 .comprar-grid h3 {
   font-family: var(--font-display);
@@ -631,6 +669,7 @@ button { background: none; border: none; cursor: pointer; font: inherit; color: 
 @media (max-width: 768px) {
   .comprar-grid { grid-template-columns: 1fr; }
   .locations-list li { flex-direction: column; gap: 0.2rem; }
+  .comprar-donation { flex-direction: column; text-align: center; }
 }
 
 /* ============================================
@@ -655,20 +694,20 @@ button { background: none; border: none; cursor: pointer; font: inherit; color: 
 }
 .footer-sub {
   font-size: 0.8rem;
-  color: var(--gray-500);
+  color: var(--gray-300);
 }
 .footer-ig {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   font-size: 0.85rem;
-  color: var(--gray-500);
+  color: var(--gray-300);
   transition: color 0.2s;
 }
 .footer-ig:hover { color: var(--warm-white); }
 .footer-copy {
   font-size: 0.75rem;
-  color: var(--gray-700);
+  color: var(--gray-300);
 }
 
 .produced-by {
