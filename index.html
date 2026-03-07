@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BEPFERSV37"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-BEPFERSV37');
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>UPR PARA EL PUEBLO — Las huelgas estudiantiles de 2010-2011 | Giovanni Roberto Cáez</title>
@@ -508,5 +517,87 @@
   </div>
 
   <script src="js/main.js"></script>
+
+  <!-- GA4 Event Tracking -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Track CTA button clicks
+      document.querySelectorAll('.btn-primary, .nav-cta').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          gtag('event', 'cta_click', {
+            event_category: 'engagement',
+            event_label: this.textContent.trim(),
+            link_url: this.href || ''
+          });
+        });
+      });
+
+      // Track outbound links
+      document.querySelectorAll('a[target="_blank"]').forEach(function(link) {
+        link.addEventListener('click', function() {
+          gtag('event', 'outbound_click', {
+            event_category: 'outbound',
+            event_label: this.textContent.trim(),
+            link_url: this.href
+          });
+        });
+      });
+
+      // Track email link clicks
+      document.querySelectorAll('a[href^="mailto:"]').forEach(function(link) {
+        link.addEventListener('click', function() {
+          gtag('event', 'email_click', {
+            event_category: 'contact',
+            event_label: this.href.replace('mailto:', '')
+          });
+        });
+      });
+
+      // Track section views with Intersection Observer
+      var sections = document.querySelectorAll('section[id], .hero');
+      var observed = {};
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            var id = entry.target.id || entry.target.className.split(' ')[0];
+            if (!observed[id]) {
+              observed[id] = true;
+              gtag('event', 'section_view', {
+                event_category: 'scroll_depth',
+                event_label: id
+              });
+            }
+          }
+        });
+      }, { threshold: 0.3 });
+      sections.forEach(function(section) { observer.observe(section); });
+
+      // Track gallery image clicks
+      document.querySelectorAll('.gallery-grid img, .gallery-grid picture').forEach(function(img) {
+        img.addEventListener('click', function() {
+          gtag('event', 'gallery_click', {
+            event_category: 'engagement',
+            event_label: this.alt || this.querySelector('img')?.alt || 'gallery image'
+          });
+        });
+      });
+
+      // Track scroll depth milestones
+      var milestones = [25, 50, 75, 100];
+      var reached = {};
+      window.addEventListener('scroll', function() {
+        var scrollPct = Math.round((window.scrollY + window.innerHeight) / document.documentElement.scrollHeight * 100);
+        milestones.forEach(function(m) {
+          if (scrollPct >= m && !reached[m]) {
+            reached[m] = true;
+            gtag('event', 'scroll_depth', {
+              event_category: 'engagement',
+              event_label: m + '%'
+            });
+          }
+        });
+      });
+    });
+  </script>
 </body>
 </html>
